@@ -64,10 +64,14 @@ touch .env
 Create a `.env` file inside the `server/` directory with the following:
 
 ```ini
+PORT=5000
 MONGO_URI=your_mongodb_uri
+MONGODB_DB=datebase_name
 JWT_SECRET=your_jwt_secret
 OPENAI_API_KEY=your_openai_key
-PORT=5000
+CLOUDINARY_CLOUD_NAME=cloud_name
+CLOUDINARY_API_KEY=cloudinary_api_key
+CLOUDINARY_API_SECRET=cloudinary_api_secret
 ```
 
 #### ▶️ Start Backend:
@@ -98,19 +102,66 @@ npm run dev
 ## 🧪 Folder Structure (Quick View)
 
 ```
-📦client/
+📦frontend/
+ ┣ 📂api/
+ ┃ ┣ 📄authApi.js
+ ┃ ┣ 📄codeApi.js
+ ┃ ┗ 📄projectApi.js
  ┣ 📂components/
  ┃ ┣ 📄EditorPanel.jsx
+ ┃ ┣ 📄Loader.jsx
+ ┃ ┣ 📄Navbar.jsx
  ┃ ┣ 📄PreviewPanel.jsx
  ┃ ┗ 📄PromptInput.jsx
+ ┃ ┗ 📄Sidebar.jsx
+ ┣ 📂context/
+ ┃ ┣ 📄authContext.jsx
+ ┃ ┗ 📄projectContext.jsx
+ ┣ 📂hooks/
+ ┃ ┣ 📄useAuth.jsx
+ ┃ ┣ 📄useCodeEditor.jsx
+ ┃ ┗ 📄useProject.jsx
  ┣ 📂pages/
+ ┃ ┣ 📂Auth/
+ ┃ ┃ ┣ 📄Login.jsx
+ ┃ ┃ ┣ 📄Register.jsx
+ ┃ ┣ 📄Dashboard.jsx
  ┃ ┗ 📄Playground.jsx
  ┗ 📄App.jsx
 
-📦server/
+📦backend/
+ ┣ 📂config/
+ ┃ ┣ 📄db.js
+ ┃ ┗ 📄cloudinary.js
  ┣ 📂controllers/
+ ┃ ┣ 📄authController.js
+ ┃ ┣ 📄codeController.js
+ ┃ ┣ 📄projectController.js
+ ┃ ┗ 📄revisionController.js
+ ┣ 📂middlewares/
+ ┃ ┣ 📄authMiddleware.js
+ ┃ ┣ 📄errorMiddleware.js
+ ┃ ┗ 📄rateLimit.js
  ┣ 📂models/
+ ┃ ┣ 📄File.js
+ ┃ ┣ 📄NodeMap.js
+ ┃ ┣ 📄Project.js
+ ┃ ┣ 📄Revision.js
+ ┃ ┣ 📄Run.js
+ ┃ ┗ 📄User.js
  ┣ 📂routes/
+ ┃ ┣ 📄authRoute.js
+ ┃ ┣ 📄projectRoute.js
+ ┃ ┣ 📄codeRoute.js
+ ┃ ┗ 📄revisionRoute.js
+ ┣ 📂services/
+ ┃ ┣ 📂debug/
+ ┃ ┃ ┗ 📄parser.js
+ ┃ ┣ 📄ast.js
+ ┃ ┣ 📄astReplace.js
+ ┃ ┣ 📄codegen.js
+ ┃ ┣ 📄llm.js
+ ┃ ┗ 📄zip.js
  ┗ 📄index.js
 ```
 
