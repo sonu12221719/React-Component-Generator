@@ -8,6 +8,7 @@ import authRoutes from './routes/authRoutes.js';
 import projectRoutes from './routes/projectRoutes.js';
 import codeRoutes from './routes/codeRoutes.js';
 import { authLimiter, generalLimiter, llmLimiter } from './middlewares/rateLimit.js';
+import revisionRoutes from './routes/revisionRoutes.js';
 
 dotenv.config();
 
@@ -34,9 +35,10 @@ app.get('/', (req, res) => {
 app.use(generalLimiter);
 
 // Register API routes
-app.use('/api/auth',authLimiter, authRoutes);
+app.use('/api/auth', authRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/code',llmLimiter, codeRoutes);
+app.use('/api/revisions', revisionRoutes);
 
 // 404 handler
 app.use((req, res, next) => {
